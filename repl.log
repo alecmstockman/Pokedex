@@ -1,0 +1,5 @@
+
+> dev
+> npx tsc && node dist/main.js
+
+repl.ts(29,20): error TS1109: Expression expected.
