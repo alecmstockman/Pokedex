@@ -1,5 +1,12 @@
-import type { CLICommand } from "./command.js"
+import type { CLICommand, State } from "./state.js"
 
-export function commandHelp(commands: Record<string, CLICommand>) {
-    console.log("Prints a help menu here")
+
+export function commandHelp(state: State) {
+    for (const cmd of Object.values(state.commands)) {
+        console.log(`${cmd.name}: ${cmd.description}`);
+    };
 }
+
+
+
+// commands: Record<string, CLICommand>

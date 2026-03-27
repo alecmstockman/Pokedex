@@ -1,10 +1,11 @@
 import { createInterface, type Interface } from "readline";
+import { getCommands } from "./commands.js"
 
 
 export type CLICommand = {
     name: string;
     description: string;
-    callback: (commands: Record<string, CLICommand>) => void;
+    callback: (state: State) => void;
 };
 
 export type State = {
@@ -13,24 +14,12 @@ export type State = {
 };
 
 export function initState(): State {
-    const rl = readline.createInterface({
+    const rl = createInterface({
             input: process.stdin,
             output: process.stdout,
             prompt: "Pokedex > ",
             });
-    const = {
-            exit: {
-                name: "exit",
-                description: "Exits the pokedex",
-                callback: (state: State) => void;,
-            },
-            help: {
-                name: "help", 
-                description: "Displays help options",
-                callback: commandHelp,
-            }
-            // can add more commands here
-        };
+    const commands = getCommands();
         
-    return;
+    return {readline: rl, commands: commands};
 }
