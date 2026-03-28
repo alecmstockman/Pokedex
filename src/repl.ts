@@ -20,7 +20,7 @@ export function startREPL(state: State) {
 
     state.readline.prompt();
  
-    state.readline.on("line", (line: string) => {
+    state.readline.on("line", async (line: string) => {
         const cleaned = cleanInput(line)
     
          if (cleaned.length === 0 || cleaned[0] === "") {
@@ -35,7 +35,7 @@ export function startREPL(state: State) {
             console.log("Unknown command");
         } else {
             try {
-                cmd.callback(state);
+                await cmd.callback(state);
             } catch (e) {
                 console.log(e)
             }
