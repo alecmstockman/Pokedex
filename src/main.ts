@@ -4,7 +4,7 @@ import { PokeAPI } from "./pokeapi.js"
 
 
 async function main() {
-  const state = initState();
+  const state = initState(5000);
   
   try { 
     startREPL(state);

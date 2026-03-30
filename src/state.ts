@@ -17,7 +17,7 @@ export type State = {
     prevLocationsURL?: string | null;
 };
 
-export function initState(): State {
+export function initState(interval: number): State {
     const rl = createInterface({
             input: process.stdin,
             output: process.stdout,
@@ -25,11 +25,13 @@ export function initState(): State {
             });
     const commands = getCommands();
 
-    const poke = new PokeAPI();
+    const poke = new PokeAPI(interval);
         
     return {
         readline: rl, 
         commands: commands,
         api: poke,
+        nextLocationsURL: "",
+        prevLocationsURL: "",
     };
 }
