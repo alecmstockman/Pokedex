@@ -37,12 +37,14 @@ export class Cache {
     }
 
     #startReapLoop() {
-        setInterval.();
+        this.#reapIntervalID = setInterval(() => {
+            this.#reap();
+        }, this.#interval);
     }
 
     stopReapLoop() {
-        clearInterval();
-        this.#reapIntervalId = undefined;
+        clearInterval(this.#reapIntervalID);
+        this.#reapIntervalID = undefined;
     }
 
     constructor(num: number) {

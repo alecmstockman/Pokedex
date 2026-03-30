@@ -1,3 +1,4 @@
+import { Cache } from "./pokecache.js";
 
 
 export class PokeAPI {
