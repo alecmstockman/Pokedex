@@ -1,6 +1,6 @@
 
 
-export class PokeAPI{
+export class PokeAPI {
     private static readonly baseURL = "https://pokeapi.co/api/v2";
 
     constructor() {}
