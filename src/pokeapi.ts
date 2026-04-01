@@ -19,6 +19,12 @@ export type Location = {
     }[];
 };
 
+export type Pokemon = {
+    "id": number;
+    "name": string;
+    "base_experience": number;
+};
+
 export type PokemonList = {
     "pokemonList": string[];
 };
@@ -82,6 +88,29 @@ export class PokeAPI {
         }
     };
 
+    async fetchPokemon(pokemonNameorId: string): Promise<Pokemon> {
+        let URL = `${PokeAPI.baseURL}/pokemon/${pokemonNameorId}`
+        
+        const cached = this.cache.get<Pokemon>(URL);
+        if (cached) {
+            return cached;
+        };
+        
+        try {
+            const response = await fetch(URL);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            };
+            const data: Pokemon = await response.json();
+            this.cache.add(URL, data);
+            return data;
+
+        } catch (err) {
+            console.log(err);
+            throw err;
+        };
+    };
 };
 
 
