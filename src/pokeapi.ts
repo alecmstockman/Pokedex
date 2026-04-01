@@ -1,6 +1,28 @@
 import { Cache } from "./pokecache.js";
 
 
+export type ShallowLocations = {
+    "count": number,
+    "next": string | null,
+    "previous": string | null,
+    "results": { "name": string, "url": string}[],
+};
+
+export type Location = {
+    "name": string;
+    "url": string;
+    "pokemon_encounters": {
+        pokemon: {
+            name: string;
+            url: string;
+        };
+    }[];
+};
+
+export type PokemonList = {
+    "pokemonList": string[];
+};
+
 export class PokeAPI {
     private static readonly baseURL = "https://pokeapi.co/api/v2";
     private cache: Cache;
@@ -10,7 +32,7 @@ export class PokeAPI {
     }
 
     async fetchLocations(pageURL?: string): Promise<ShallowLocations> {
-        let URL = PokeAPI.baseURL + "/location-area/";
+            let URL = PokeAPI.baseURL + "/location-area/";
         if (pageURL) {
             URL = pageURL
         };
@@ -19,7 +41,6 @@ export class PokeAPI {
         if (cached) {
             return cached;
         };
-
         try {
             const response = await fetch(URL);
 
@@ -27,6 +48,7 @@ export class PokeAPI {
                 throw new Error(`HTTP error: ${response.status}`);
             };
             const data: ShallowLocations = await response.json();
+            console.log(data)
             this.cache.add(URL, data);
             return data;
 
@@ -59,16 +81,8 @@ export class PokeAPI {
             throw err;
         }
     };
-}
 
-export type ShallowLocations = {
-    "count": number,
-    "next": string | null,
-    "previous": string | null,
-    "results": { "name": string, "url": string}[],
 };
 
-export type Location = {
-    "name": string;
-    "url": string;
-};
+
+

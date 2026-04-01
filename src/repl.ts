@@ -29,13 +29,15 @@ export function startREPL(state: State) {
         }
 
         const commandName = cleaned[0];
+        const args = cleaned.slice(1);
+        console.log(`Command args: ${args}`)
         const cmd = state.commands[commandName];
 
         if (!cmd) {
             console.log("Unknown command");
         } else {
             try {
-                await cmd.callback(state);
+                await cmd.callback(state, ...args);
             } catch (e) {
                 console.log(e)
             }

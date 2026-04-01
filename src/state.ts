@@ -6,13 +6,13 @@ import { PokeAPI } from "./pokeapi.js"
 export type CLICommand = {
     name: string;
     description: string;
-    callback: (state: State) => Promise<void>;
+    callback: (state: State, ...args: string[]) => Promise<void>;
 };
 
 export type State = {
     readline: Interface;
     commands: Record<string, CLICommand>;
-    api: PokeAPI
+    pokeAPI: PokeAPI
     nextLocationsURL?: string | null;
     prevLocationsURL?: string | null;
 };
@@ -30,7 +30,7 @@ export function initState(interval: number): State {
     return {
         readline: rl, 
         commands: commands,
-        api: poke,
+        pokeAPI: poke,
         nextLocationsURL: "",
         prevLocationsURL: "",
     };

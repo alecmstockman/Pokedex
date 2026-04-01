@@ -3,8 +3,27 @@ import { test, expect } from "vitest";
 
 test.concurrent.each([
   {
-    key: "https://example.com",
-    val: "testdata",
+    key: "https://pokeapi.co/api/v2/location-area/",
+    val: {
+      name: 'canalave-city-area',
+      url: 'https://pokeapi.co/api/v2/location-area/1/'
+    },
+    interval: 500,
+  },
+  {
+    key: "https://pokeapi.co/api/v2/location-area/",
+    val: {
+      name: 'eterna-city-area',
+      url: 'https://pokeapi.co/api/v2/location-area/2/'
+    },
+    interval: 500,
+  },
+  {
+    key: "https://pokeapi.co/api/v2/location-area/",
+    val: {
+      name: 'mt-coronet-6f',
+      url: 'https://pokeapi.co/api/v2/location-area/19/'
+    },
     interval: 500,
   },
   {
@@ -17,11 +36,11 @@ test.concurrent.each([
 
   cache.add(key, val);
   const cached = cache.get(key);
-  expect(cached).toBe(val);
+  expect(cached).toEqual(val);
 
   await new Promise((resolve) => setTimeout(resolve, interval * 2));
   const reaped = cache.get(key);
-  expect(reaped).toBe(undefined);
+  expect(reaped).toEqual(undefined);
 
   cache.stopReapLoop();
 });
