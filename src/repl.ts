@@ -30,7 +30,7 @@ export function startREPL(state: State) {
 
         const commandName = cleaned[0];
         const args = cleaned.slice(1);
-        console.log(`Command args: ${args}`)
+        // console.log(`Command args: ${args}`)
         const cmd = state.commands[commandName];
 
         if (!cmd) {
