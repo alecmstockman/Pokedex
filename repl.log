@@ -8,18 +8,10 @@ Welcome to the Pokedex!
     help: Displays a help message
     exit: Exit the Pokedex
     
-Pokedex > Command args: pastoria-city-area
-Exploring pastoria-city-area...
-Found Pokemon:
- - tentacool
- - tentacruel
- - magikarp
- - gyarados
- - remoraid
- - octillery
- - wingull
- - pelipper
- - shellos
- - gastrodon
+Pokedex > Command args: squirtle
+Throwing a Pokeball at squirtle...
+Catch rate: 61.3%
+squirtle was caught!
+squirtle was added to your Pokedex
 Pokedex > Command args: 
 Closing the Pokedex... Goodbye!

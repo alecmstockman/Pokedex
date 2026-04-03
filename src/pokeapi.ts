@@ -19,10 +19,34 @@ export type Location = {
     }[];
 };
 
+export type Stat = {
+    "base_stat": number;
+    "effort": number;
+    "stat": {
+        "name": string;
+        "url": string;
+    };
+}
+
+export type Type = {
+    "type": {
+        "name": string;
+        "url": string;
+    };
+}
+
 export type Pokemon = {
     "id": number;
     "name": string;
     "base_experience": number;
+    "stats": Stat[];
+    "hp": number;
+    "height": number;
+    "weight": number;
+    "special-attack": number;
+    "special-defense": number;
+    "speed": number
+    "types": Type[];
 };
 
 export type PokemonList = {
